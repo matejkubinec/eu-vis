@@ -1,4 +1,7 @@
 const upload = document.querySelector('#upload-data');
+const uploadButton = document.querySelector('#upload-data-button');
+const downloadButton = document.querySelector('#download-chart');
+const downloadLink = document.querySelector('#download-link');
 const map = document.querySelector('svg');
 
 const mapCountryCode = (code) => {
@@ -68,4 +71,16 @@ const onDataChange = (e) => {
   }
 };
 
+const onDownloadChartClick = () => {
+  const data = new Blob([map.outerHTML]);
+  downloadLink.href = URL.createObjectURL(data);
+  downloadLink.click();
+};
+
+const onUploadButtonClick = () => {
+  upload.click();
+};
+
 upload.addEventListener('change', onDataChange);
+uploadButton.addEventListener('click', onUploadButtonClick);
+downloadButton.addEventListener('click', onDownloadChartClick);

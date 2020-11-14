@@ -5,30 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EU Visualization</title>
     <style>
+      * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
       html,
       body {
         padding: 0;
         margin: 0;
       }
 
+      button {
+        background-color: #9ccbe1;
+        border: 1px solid black;
+        border-radius: 2px;
+        padding: 0.5em;
+        color: black;
+      }
+
+      button:active {
+        border-radius: 2px;
+      }
+
+      #upload-data,
+      #download-link {
+        visibility: hidden;
+        width: 0;
+      }
+
       #controls {
+        display: flex;
+        border-bottom: 1px solid black;
         padding: 5px 15px;
-        height: calc(5vh - 15px);
       }
 
       #map-container,
       #map-container svg {
         width: 100%;
-        height: calc(100vh - 5vh);
+        height: calc(100vh - 6vh);
       }
     </style>
   </head>
   <body>
     <div id="controls">
-      <label>
-        Select file
+      <div>
+        <button id="upload-data-button">Select file</button>
         <input id="upload-data" type="file" />
-      </label>
+      </div>
+      <div>
+        <button id="download-chart">Download chart</button>
+        <a id="download-link" download="chart.svg" type="image/svg+xml"></a>
+      </div>
     </div>
     <div id="map-container">
       <?xml version="1.0" encoding="UTF-8" standalone="no"?>
