@@ -1,0 +1,6 @@
+# Europe Visualization
+
+Simple web app for visualization of data on a map of Europe.
+
+[Map source](https://commons.wikimedia.org/wiki/File:European_Union_map.svg)
+[License](license.txt)
