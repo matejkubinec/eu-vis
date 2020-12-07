@@ -6,6 +6,7 @@
     <title>EU Visualization</title>
     <style>
       * {
+        font-size: 14px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
 
@@ -13,6 +14,13 @@
       body {
         padding: 0;
         margin: 0;
+      }
+
+      select {
+        border: 1px solid black;
+        border-radius: 2px;
+        padding: 0.4em;
+        color: black;
       }
 
       button {
@@ -39,13 +47,17 @@
         padding: 5px 15px;
       }
 
+      #controls > div {
+        margin-right: 10px;
+      }
+
       #map-container,
       #map-container svg {
         width: 100%;
         height: calc(100vh - 6vh);
       }
     </style>
-  </head>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
   <body>
     <div id="controls">
       <div>
@@ -55,6 +67,29 @@
       <div>
         <button id="download-chart">Download chart</button>
         <a id="download-link" download="chart.svg" type="image/svg+xml"></a>
+      </div>
+      <div>
+          <select id='palette-select'>
+            <option value="red">Red</option>
+            <option value="pink">Pink</option>
+            <option value="purple">Purple</option>
+            <option value="deepPurple">Deep Purple</option>
+            <option value="indigo">Indigo</option>
+            <option value="blue" selected>Blue</option>
+            <option value="lightBlue">Light Blue</option>
+            <option value="cyan">Cyan</option>
+            <option value="teal">Teal</option>
+            <option value="green">Green</option>
+            <option value="lightGreen">Light Green</option>
+            <option value="lime">Lime</option>
+            <option value="yellow">Yellow</option>
+            <option value="amber">Amber</option>
+            <option value="orange">Orange</option>
+            <option value="deepOrange">Deep Orange</option>
+            <option value="brown">Brown</option>
+            <option value="grey">Grey</option>
+            <option value="blueGrey">Blue Grey</option>
+          </select>
       </div>
     </div>
     <div id="map-container">
@@ -107,6 +142,7 @@
             </cc:Work>
           </rdf:RDF>
         </metadata>
+        <g id='svg-scale'></g>
         <g
           inkscape:label="Layer 1"
           inkscape:groupmode="layer"
