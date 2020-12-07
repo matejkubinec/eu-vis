@@ -151,11 +151,17 @@ const drawScale = (scale, min, max) => {
     items.push(scaledValue);
   }
 
+  const translateX = 10;
+  const translateY = 2.5;
+  const translateTransform = `translate(${translateX}, ${translateY})`;
+  const scaleTransform = 'scale(0.5)';
+  const transform = translateTransform + scaleTransform;
+
   const g = d3
     .select('svg')
     .append('g')
     .attr('id', 'chart-legend')
-    .attr('transform', 'translate(-50,5)');
+    .attr('transform', transform);
 
   g.selectAll('rect')
     .data(items)
@@ -173,16 +179,14 @@ const drawScale = (scale, min, max) => {
     .select('svg')
     .append('g')
     .attr('id', 'chart-axis')
-    .attr('transform', 'translate(-52.5,5)')
-    .attr('stroke-width', 0.5);
+    .attr('transform', transform);
 
   const axisScale = d3
     .scaleLinear()
     .domain([max, min])
-    .nice()
     .range([0, items.length * ITEM_HEIGHT]);
 
-  const axis = d3.axisLeft().scale(axisScale);
+  const axis = d3.axisLeft(axisScale).tickValues([max, min]);
 
   gAxis.call(axis).selectAll('text').style('font-size', 5);
 };
