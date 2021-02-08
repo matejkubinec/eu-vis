@@ -139,56 +139,28 @@ const uploadButton = document.querySelector('#upload-data-button');
 const downloadButton = document.querySelector('#download-chart');
 const downloadLink = document.querySelector('#download-link');
 const paletteSelect = document.querySelector('#palette-select');
-const map = document.querySelector('svg');
+const Chart = {
+  map: document.querySelector('svg'),
+  legend: {
+    lowerBound: document.querySelector('#text-lower-bound'),
+    upperBound: document.querySelector('#text-upper-bound'),
+  },
+};
 
 const drawScale = (scale, min, max) => {
   const MAX = 100;
-  const ITEM_HEIGHT = 50 / MAX;
-  const step = (max - min) / (MAX - 1);
-  const items = [];
+  const step = (max - min) / MAX;
+
   for (let i = MAX; i >= 0; i--) {
+    const rect = document.querySelector(`#r${i}`);
     const scaledValue = i * step + min;
-    items.push(scaledValue);
+    rect.setAttribute('fill', scale(scaledValue));
   }
 
-  const translateX = 10;
-  const translateY = 2.5;
-  const translateTransform = `translate(${translateX}, ${translateY})`;
-  const scaleTransform = 'scale(0.5)';
-  const transform = translateTransform + scaleTransform;
+  const removeFractional = (num) => num.toString().split('.')[0];
 
-  const g = d3
-    .select('svg')
-    .append('g')
-    .attr('id', 'chart-legend')
-    .attr('transform', transform);
-
-  g.selectAll('rect')
-    .data(items)
-    .enter()
-    .append('rect')
-    .attr('x', 0)
-    .attr('y', (_, i) => {
-      return i * ITEM_HEIGHT;
-    })
-    .attr('height', ITEM_HEIGHT + 1)
-    .attr('width', 10)
-    .attr('fill', (d) => scale(d));
-
-  const gAxis = d3
-    .select('svg')
-    .append('g')
-    .attr('id', 'chart-axis')
-    .attr('transform', transform);
-
-  const axisScale = d3
-    .scaleLinear()
-    .domain([max, min])
-    .range([0, items.length * ITEM_HEIGHT]);
-
-  const axis = d3.axisLeft(axisScale).tickValues([max, min]);
-
-  gAxis.call(axis).selectAll('text').style('font-size', 5);
+  Chart.legend.lowerBound.innerHTML = removeFractional(min);
+  Chart.legend.upperBound.innerHTML = removeFractional(max);
 };
 
 const mapCountryCode = (code) => {
@@ -240,11 +212,11 @@ const parseRow = (row) => ({
   value: valueToNumber(row.slice(3)),
 });
 
-const parseData = (csv) => csv.split('\n').filter(Boolean).map(parseRow);
+const parseData = (csv) => csv.trim().split('\n').filter(Boolean).map(parseRow);
 
 const onDataLoad = ({ target: { result } }) => {
   const data = parseData(result);
-  console.log({ data });
+  console.log('loaded data: ', data);
   drawData(data);
 };
 
@@ -259,7 +231,7 @@ const onDataChange = (e) => {
 };
 
 const onDownloadChartClick = () => {
-  const data = new Blob([map.outerHTML]);
+  const data = new Blob([Chart.map.outerHTML]);
   downloadLink.href = URL.createObjectURL(data);
   downloadLink.click();
 };
