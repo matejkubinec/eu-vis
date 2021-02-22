@@ -1,0 +1,81 @@
+button,
+select {
+  font-size: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+select {
+  width: 125px;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 0.4em;
+  color: black;
+}
+
+button {
+  border: none;
+  width: 125px;
+  border-radius: 2px;
+  padding: 0.5em;
+  color: #fff;
+  background-color: #0078d7;
+}
+
+button:active {
+  border-radius: 2px;
+}
+
+.hidden {
+  visibility: hidden;
+  width: 0;
+}
+
+.controls-container {
+  display: flex;
+  padding: 1em 1em;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+.controls-container > div {
+  margin-right: 0.5em;
+}
+
+#map-container {
+  height: 100%;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+svg {
+  margin-top: 220px;
+  scale: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1e1e1e;
+  }
+
+  svg {
+    border-radius: 2px;
+    background-color: #ffffff;
+  }
+
+  select {
+    color: #ffffff;
+    background-color: #444444;
+  }
+
+  .controls-container {
+    border: 1px solid #222222;
+    box-shadow: 0px 1px 2px 0px rgba(255, 255, 255, 0.55);
+  }
+}
