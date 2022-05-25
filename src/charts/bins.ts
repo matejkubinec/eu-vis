@@ -35,6 +35,8 @@ export const drawBins = (
     });
   });
 
+  D3.select(mapSvg).selectAll('path').style('stroke', COLORS.Borders);
+
   const legendData = [null, ...bins];
   const legend = D3.select(mapSvg).select('#chart-legend');
 

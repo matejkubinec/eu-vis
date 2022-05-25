@@ -2,6 +2,7 @@ import { DataItem, Country } from './types';
 
 export const COLORS = {
   NoData: '#eeeeee',
+  Borders: '#aaaaaa',
 };
 
 export const SAMPLE_DATA: DataItem[] = [
