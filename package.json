@@ -4,7 +4,7 @@
   "description": "Simple web app for visualization of data on a map of Europe.",
   "main": "script.js",
   "scripts": {
-    "build": "vite build --outDir docs",
+    "build": "vite build --outDir docs --base ''",
     "dev": "vite"
   },
   "repository": {
