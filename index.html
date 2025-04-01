@@ -9,6 +9,27 @@
 </head>
 
 <body>
+  <dialog id="info-dialog">
+    <h3>Help</h3>
+    <p>
+      Select data in format (<a target="_blank" href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>)
+      below:
+    </p>
+    <pre>COUNTRY_CODE;VALUE</pre>
+    <p>
+      Use standard country codes (<a target="_blank"
+        href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes">ISO
+        AL-2</a>).
+    </p>
+    <p>
+      Click the "<strong>Download chart</strong>" button to get the resulting chart.
+    </p>
+    <div class="controls">
+      <form method="dialog">
+        <button id="close-dialog-button" autofocus>Close</button>
+      </form>
+    </div>
+  </dialog>
   <div class="controls-container">
     <div>
       <button id="upload-data-button">Select data</button>
@@ -46,6 +67,11 @@
         <option value="grey">Grey</option>
         <option value="blueGrey">Blue Grey</option>
       </select>
+    </div>
+    <div class="controls-end">
+      <button id="display-info-button">
+        Help
+      </button>
     </div>
   </div>
   <div id="map-container">

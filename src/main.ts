@@ -11,6 +11,8 @@ class Page {
   downloadChartLink: HTMLAnchorElement;
   mapSvg: SVGElement;
   data: DataItem[] = SAMPLE_DATA;
+  displayInfoButton: HTMLButtonElement;
+  infoDialog: HTMLDialogElement;
 
   onPaletteChange = () => {
     this.redrawChart();
@@ -65,6 +67,10 @@ class Page {
     }
   };
 
+  onOpenInfoModal = () => {
+    this.infoDialog.showModal();
+  };
+
   initElements = () => {
     this.selectDataInput = document.querySelector('#upload-data-input');
     this.selectDataButton = document.querySelector('#upload-data-button');
@@ -73,6 +79,8 @@ class Page {
     this.paletteSelect = document.querySelector('#palette-select');
     this.modeSelect = document.querySelector('#mode-select');
     this.mapSvg = document.querySelector('#eu-map');
+    this.infoDialog = document.querySelector('#info-dialog');
+    this.displayInfoButton = document.querySelector('#display-info-button');
   };
 
   initListeners = () => {
@@ -81,6 +89,7 @@ class Page {
     this.downloadChartButton.addEventListener('click', this.onDownloadChart);
     this.paletteSelect.addEventListener('click', this.onPaletteChange);
     this.modeSelect.addEventListener('click', this.onModeChange);
+    this.displayInfoButton.addEventListener('click', this.onOpenInfoModal);
   };
 }
 
